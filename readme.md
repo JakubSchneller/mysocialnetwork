@@ -40,6 +40,6 @@ V kořenu repozitáře vytvořte soubor README.md s popisem postupu nasazení va
     - Sdílení
     - Sdílení obrázků
     - Sdílení youtube videí
-    - Čas přidání příspěvku
+    - Čas přidání příspěkuawbcavku
     - Mazání příspěvků
     - Nahrávání příspěvků přes ajax
