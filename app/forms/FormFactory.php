@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 namespace App\Forms;
 
@@ -11,7 +10,10 @@ class FormFactory
 {
 	use Nette\SmartObject;
 
-	public function create(): Form
+	/**
+	 * @return Form
+	 */
+	public function create()
 	{
 		$form = new Form;
 		return $form;

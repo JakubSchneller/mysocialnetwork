@@ -1,0 +1,66 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages
+ *}
+{block content}
+    {if $userId == $users->user_id}
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-12">
+									<div align="center">
+										<a class="" href="#">
+											<img class="media-object dp img-circle" src="../{$users->image}" style="width: 180px;height:180px;">
+										</a>
+									</div>
+								</div>
+								<div class="col-md-12 text-left">
+									<h2 align="center">{$users->first_name} {$users->last_name}</h2><br>
+									<p>
+									<form n:name="editUserForm" >
+									<div class="form-group">
+										<label class="control-label" for="inputDefault">Křestní jméno:</label>
+										<input n:name=firstname value="{$users->first_name}" class="form-control" id="InputDefault"  type="text">
+									</div>
+
+									<div class="form-group">
+										<label class="control-label" for="inputDefault">Příjmení:</label>
+										<input n:name=lastname value="{$users->last_name}"class="form-control" id="inputDefault"  type="text">
+									</div>
+									<div class="form-group">
+										<label class="control-label" for="inputDefault">Email:</label>
+										<input n:name=email value="{$users->user_email}" class="form-control" id="inputDefault" type="text">
+									</div>
+									<div class="form-group">
+										<label class="control-label" for="inputDefault">Přihlašovací jméno:</label>
+										<input n:name=username value="{$users->user_name}" class="form-control" id="inputDefault" type="text">
+									</div>
+                                    {if $user->isInRole('admin') || $user->isInRole('owner')}
+									<div class="form-group">
+										<label class="control-label" for="inputDefault">Role:</label>
+										<select n:name=role class="form-control">
+										</select>
+									</div>
+									{/if}
+									<div class="text-center">
+									<button type="submit" class="btn btn-primary">Uložit</button>
+									</div>
+									</form>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    {/if}
+	</body>
+</hmtl>
+{/block}

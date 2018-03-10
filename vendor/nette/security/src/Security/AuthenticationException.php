@@ -13,4 +13,5 @@ namespace Nette\Security;
  */
 class AuthenticationException extends \Exception
 {
+
 }

@@ -1,8 +1,40 @@
 {block content}
-<h1 n:block=title>Page Not Found</h1>
-
-<p>The page you requested could not be found. It is possible that the address is
-incorrect, or that the page no longer exists. Please use a search engine to find
-what you are looking for.</p>
-
-<p><small>error 404</small></p>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>404 error</title>
+        <style>
+            body {
+                background-color: white;
+            }
+            .error-template {
+                padding: 40px 15px;text-align: center;
+            }
+            .error-actions {
+                margin-top:15px;margin-bottom:15px;
+            }
+            .error-actions .btn {
+                margin-right:10px;
+            }
+        </style>
+    </head>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>
+                    Oops!</h1>
+                <h2>
+                    404 Stránka nenalezena</h2>
+                <div class="error-details">
+                    Stránka kterou hledáte neexistuje!
+                </div>
+                <div class="error-actions">
+                    <a n:href="Homepage:default" class="btn btn-primary btn-lg">Zpátky domů</a><a n:href="Homepage:default" class="btn btn-default btn-lg">Kontaktovat podporu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

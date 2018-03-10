@@ -1,7 +1,6 @@
-parameters:
-
-
 database:
-	dsn: 'mysql:host=127.0.0.1;dbname=social-network'
-	user: root
+	dsn: 'mysql:host=127.0.0.1;dbname=socialnetwork;port=8889'
+	user:   root
 	password: root
+	options:
+		lazy: yes

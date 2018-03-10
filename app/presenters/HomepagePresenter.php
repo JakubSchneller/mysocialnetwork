@@ -2,9 +2,20 @@
 
 namespace App\Presenters;
 
-use Nette;
+use Nette\Database\Context;
 
-
-class HomepagePresenter extends Nette\Application\UI\Presenter
+class HomepagePresenter extends BasePresenter
 {
+    private $database;
+
+
+    public function __construct(Context $database)
+    {
+        $this->database = $database;
+    }
+
+    public function renderDefault()
+	{
+
+	}
 }

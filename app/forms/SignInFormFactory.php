@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 
 namespace App\Forms;
 
@@ -26,7 +25,10 @@ class SignInFormFactory
 	}
 
 
-	public function create(callable $onSuccess): Form
+	/**
+	 * @return Form
+	 */
+	public function create(callable $onSuccess)
 	{
 		$form = $this->factory->create();
 		$form->addText('username', 'Username:')

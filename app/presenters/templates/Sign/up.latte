@@ -1,14 +1,48 @@
-{* This is the welcome page, you can delete it *}
-{layout ../@register.latte}
 {block content}
-<div class="row">
-    <div class="col">
-        <div class="card">
-            <div class="card-header">
-                Registrace
-            </div>
-            <div class="card-block">
-                {control signUpForm}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Registrace</h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form" n:name=registration enctype="multipart/form-data">
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Křestní jméno" n:name=surname type="text">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Příjmení" n:name=lastname type="text">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Přihlašovací jméno" n:name=username type="text">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="E-mail" n:name=email type="e-mail">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Heslo" n:name="password">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Potvrdit heslo" n:name=passwordconfirm type="password">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="Něco málo o mě" n:name=aboutme type="text"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Vybrat obrázek" n:name=image type="file">
+                            </div>
+
+
+                            <input class="btn btn-lg btn-success btn-block" n:name=submit value="Registrovat">
+
+                        </fieldset>
+                    </form>
+                    <div align="center">
+                        <br><b>Už jste zaregistrován/na?</b> <br></b><a n:href=Sign:in >Přihlásit se</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,1 @@
+[2018-02-16 13-13-18] Nette\Security\AuthenticationException: Jméno je nesprávné. #1 in /Applications/MAMP/htdocs/test/app/model/UserManager.php:54  @  http://localhost:8888/test/www/sign/in  @@  exception--2018-02-16--13-13--87ce496e1d.html

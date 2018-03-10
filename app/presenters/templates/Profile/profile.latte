@@ -1,0 +1,73 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages
+ *}
+{block content}
+
+<!DOCTYPE html>
+
+<hmtl>
+	<head>
+
+	</head>
+	<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-md-12">
+									<div align="center">
+										<a class="" href="#">
+											<img class="media-object dp img-circle" src="../{$users->image}" style="width: 180px;height:180px;">
+										</a>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<h2 align="center">{$users->first_name} {$users->last_name}</h2>
+									<div class="text-center">
+									<a n:href="Profile:editprofile, 'userId' => $users->user_id" type="button" class="btn btn-success" style="margin: auto">Editovat</a>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label class="control-label" for="disabledInput">Křestní jméno:</label>
+										<input class="form-control" id="disabledInput" placeholder="{$users->first_name}" disabled="" type="text">
+									</div>
+
+									<div class="form-group">
+										<label class="control-label" for="disabledInput">Příjmení:</label>
+										<input class="form-control" id="disabledInput" placeholder="{$users->last_name}" disabled="" type="text">
+									</div>
+									<div class="form-group">
+										<label class="control-label" for="disabledInput">Datum registrace:</label>
+										<input class="form-control" id="disabledInput" placeholder="{$users->date_created}" disabled="" type="text">
+									</div>
+									<div class="form-group">
+										<label class="control-label" for="disabledInput">Email:</label>
+										<input class="form-control" id="disabledInput" placeholder="{$users->user_email}" disabled="" type="text">
+									</div>
+									<div class="form-group">
+										<label class="control-label" for="disabledInput">Přihlašovací jméno:</label>
+										<input class="form-control" id="disabledInput" placeholder="{$users->user_name}" disabled="" type="text">
+									</div>
+									<div class="form-group">
+										<label class="control-label" for="disabledInput">Role:</label>
+										<input class="form-control" id="disabledInput" placeholder="{$users->role}" disabled="" type="text">
+									</div>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+		</div>
+	</div>
+	</body>
+</hmtl>
+{/block}

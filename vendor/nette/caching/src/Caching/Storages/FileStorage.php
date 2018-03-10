@@ -22,11 +22,11 @@ class FileStorage implements Nette\Caching\IStorage
 	 * Atomic thread safe logic:
 	 *
 	 * 1) reading: open(r+b), lock(SH), read
-	 *     - delete?: delete*, close
-	 * 2) deleting: delete*
+	 *     - delete.latte?: delete.latte*, close
+	 * 2) deleting: delete.latte*
 	 * 3) writing: open(r+b || wb), lock(EX), truncate*, write data, write meta, close
 	 *
-	 * delete* = try unlink, if fails (on NTFS) { lock(EX), truncate, close, unlink } else close (on ext3)
+	 * delete.latte* = try unlink, if fails (on NTFS) { lock(EX), truncate, close, unlink } else close (on ext3)
 	 */
 
 	/** @internal cache file structure */
