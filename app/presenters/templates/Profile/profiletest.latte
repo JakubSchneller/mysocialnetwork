@@ -1,0 +1,45 @@
+{block content}
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card hovercard">
+					<div class="cardheader">
+					</div>
+					<div class="avatar">
+						<img alt="" src="../images/cover.jpg">
+					</div>
+					<div class="col-md-12">
+						<div class="form-group">
+							<label class="control-label" for="disabledInput">Křestní jméno:</label>
+							<input class="form-control" id="disabledInput" placeholder="{$users->first_name}" disabled="" type="text">
+						</div>
+
+						<div class="form-group">
+							<label class="control-label" for="disabledInput">Příjmení:</label>
+							<input class="form-control" id="disabledInput" placeholder="{$users->last_name}" disabled="" type="text">
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="disabledInput">Datum registrace:</label>
+							<input class="form-control" id="disabledInput" placeholder="{$users->date_created}" disabled="" type="text">
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="disabledInput">Email:</label>
+							<input class="form-control" id="disabledInput" placeholder="{$users->user_email}" disabled="" type="text">
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="disabledInput">Přihlašovací jméno:</label>
+							<input class="form-control" id="disabledInput" placeholder="{$users->user_name}" disabled="" type="text">
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="disabledInput">Role:</label>
+							<input class="form-control" id="disabledInput" placeholder="{$users->role}" disabled="" type="text">
+						</div>
+						</p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+{/block}

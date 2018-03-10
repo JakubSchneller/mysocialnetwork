@@ -1,8 +1,8 @@
 <?php
-// source: /Applications/MAMP/htdocs/mysocialnetwork/app/config/config.neon 
-// source: /Applications/MAMP/htdocs/mysocialnetwork/app/config/config.local.neon 
+// source: /Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/config/config.neon 
+// source: /Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/config/config.local.neon 
 
-class Container_e0d43ff0c6 extends Nette\DI\Container
+class Container_6b6baa36be extends Nette\DI\Container
 {
 	protected $meta = [
 		'types' => [
@@ -251,12 +251,12 @@ class Container_e0d43ff0c6 extends Nette\DI\Container
 	{
 		$this->parameters = $params;
 		$this->parameters += [
-			'appDir' => '/Applications/MAMP/htdocs/mysocialnetwork/app',
-			'wwwDir' => '/Applications/MAMP/htdocs/mysocialnetwork/www',
+			'appDir' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app',
+			'wwwDir' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/www',
 			'debugMode' => true,
 			'productionMode' => false,
 			'consoleMode' => false,
-			'tempDir' => '/Applications/MAMP/htdocs/mysocialnetwork/app/../temp',
+			'tempDir' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/../temp',
 		];
 	}
 
@@ -383,7 +383,7 @@ class Container_e0d43ff0c6 extends Nette\DI\Container
 
 	public function createServiceApplication__presenterFactory(): Nette\Application\IPresenterFactory
 	{
-		$service = new Nette\Application\PresenterFactory(new Nette\Bridges\ApplicationDI\PresenterFactoryCallback($this, 5, '/Applications/MAMP/htdocs/mysocialnetwork/app/../temp/cache/Nette%5CBridges%5CApplicationDI%5CApplicationExtension'));
+		$service = new Nette\Application\PresenterFactory(new Nette\Bridges\ApplicationDI\PresenterFactoryCallback($this, 5, '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/../temp/cache/Nette%5CBridges%5CApplicationDI%5CApplicationExtension'));
 		$service->setMapping(['*' => 'App\*Module\Presenters\*Presenter']);
 		return $service;
 	}
@@ -391,14 +391,14 @@ class Container_e0d43ff0c6 extends Nette\DI\Container
 
 	public function createServiceCache__journal(): Nette\Caching\Storages\IJournal
 	{
-		$service = new Nette\Caching\Storages\SQLiteJournal('/Applications/MAMP/htdocs/mysocialnetwork/app/../temp/cache/journal.s3db');
+		$service = new Nette\Caching\Storages\SQLiteJournal('/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/../temp/cache/journal.s3db');
 		return $service;
 	}
 
 
 	public function createServiceCache__storage(): Nette\Caching\IStorage
 	{
-		$service = new Nette\Caching\Storages\FileStorage('/Applications/MAMP/htdocs/mysocialnetwork/app/../temp/cache',
+		$service = new Nette\Caching\Storages\FileStorage('/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/../temp/cache',
 			$this->getService('cache.journal'));
 		return $service;
 	}
@@ -480,7 +480,7 @@ class Container_e0d43ff0c6 extends Nette\DI\Container
 			private $container;
 
 
-			public function __construct(Container_e0d43ff0c6 $container)
+			public function __construct(Container_6b6baa36be $container)
 			{
 				$this->container = $container;
 			}
@@ -489,7 +489,7 @@ class Container_e0d43ff0c6 extends Nette\DI\Container
 			public function create(): Latte\Engine
 			{
 				$service = new Latte\Engine;
-				$service->setTempDirectory('/Applications/MAMP/htdocs/mysocialnetwork/app/../temp/cache/latte');
+				$service->setTempDirectory('/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/../temp/cache/latte');
 				$service->setAutoRefresh(true);
 				$service->setContentType('html');
 				Nette\Utils\Html::$xhtml = false;

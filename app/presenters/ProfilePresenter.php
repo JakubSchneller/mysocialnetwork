@@ -25,6 +25,12 @@ class ProfilePresenter extends \App\Presenters\BasePresenter
         $this->template->users = $users;
 
     }
+    public function renderProfileTest($userId)
+    {
+        $users = $this->database->table("users")->where("user_id", $userId)->fetch();
+        $this->template->users = $users;
+
+    }
     public function renderEditProfile($userId)
     {
         $users = $this->database->table("users")->where("user_id", $userId)->fetch();

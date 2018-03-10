@@ -1,9 +1,9 @@
 <?php
-// source: /Applications/MAMP/htdocs/mysocialnetwork/app/presenters/templates/@layout.latte
+// source: /Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/presenters/templates/@layout.latte
 
 use Latte\Runtime as LR;
 
-class Template52a3872b7c extends Latte\Runtime\Template
+class Template17da9bfa2d extends Latte\Runtime\Template
 {
 	public $blocks = [
 		'scripts' => 'blockScripts',
@@ -36,16 +36,13 @@ class Template52a3872b7c extends Latte\Runtime\Template
 			position: relative;
 			min-height: 100%;
 		}
-		body {
-			margin-bottom: 90px;
-		}
 
 		@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 	</style>
 <body>
 <header>
 <?php
-		/* line 32 */
+		/* line 29 */
 		$this->createTemplate("components/header.latte", $this->params, "include")->renderToContentType('html');
 ?>
 </header>
@@ -56,7 +53,7 @@ class Template52a3872b7c extends Latte\Runtime\Template
 			if ($flash->type == 'success') {
 ?>
 		<div class="alert alert-success" role="alert">
-            <?php echo LR\Filters::escapeHtmlText($flash->message) /* line 38 */ ?>
+            <?php echo LR\Filters::escapeHtmlText($flash->message) /* line 35 */ ?>
 
 		</div>
 <?php
@@ -64,7 +61,7 @@ class Template52a3872b7c extends Latte\Runtime\Template
 			elseif ($flash->type == 'danger') {
 ?>
 		<div class="alert alert-danger" role="alert">
-            <?php echo LR\Filters::escapeHtmlText($flash->message) /* line 42 */ ?>
+            <?php echo LR\Filters::escapeHtmlText($flash->message) /* line 39 */ ?>
 
 		</div>
 <?php
@@ -72,7 +69,7 @@ class Template52a3872b7c extends Latte\Runtime\Template
 			elseif ($flash->type == 'warning') {
 ?>
 		<div class="alert alert-warning" role="alert">
-            <?php echo LR\Filters::escapeHtmlText($flash->message) /* line 46 */ ?>
+            <?php echo LR\Filters::escapeHtmlText($flash->message) /* line 43 */ ?>
 
 		</div>
 <?php
@@ -80,7 +77,7 @@ class Template52a3872b7c extends Latte\Runtime\Template
 			else {
 ?>
 		<div class="alert alert-secondary" role="alert">
-            <?php echo LR\Filters::escapeHtmlText($flash->message) /* line 50 */ ?>
+            <?php echo LR\Filters::escapeHtmlText($flash->message) /* line 47 */ ?>
 
 		</div>
 <?php
@@ -103,7 +100,7 @@ class Template52a3872b7c extends Latte\Runtime\Template
 	function prepare()
 	{
 		extract($this->params);
-		if (isset($this->params['flash'])) trigger_error('Variable $flash overwritten in foreach on line 35');
+		if (isset($this->params['flash'])) trigger_error('Variable $flash overwritten in foreach on line 32');
 		Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
 		
 	}
@@ -114,8 +111,8 @@ class Template52a3872b7c extends Latte\Runtime\Template
 		extract($_args);
 ?>
 	<script src="http://code.jquery.com/jquery-3.3.1.slim.js" integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA=" crossorigin="anonymous"></script>
-	<script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 58 */ ?>/bootstrap/js/bootstrap.min.js"></script>
-	<script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 59 */ ?>/js/main.js"></script>
+	<script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 55 */ ?>/bootstrap/js/bootstrap.min.js"></script>
+	<script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 56 */ ?>/js/main.js"></script>
 	<script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
 <?php
 	}

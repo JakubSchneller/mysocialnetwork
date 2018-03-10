@@ -16,6 +16,7 @@ class HomepagePresenter extends BasePresenter
 
     public function renderDefault()
 	{
-
+        $posts = $this->database->table("posts");
+        $this->template->posts = $posts;
 	}
 }

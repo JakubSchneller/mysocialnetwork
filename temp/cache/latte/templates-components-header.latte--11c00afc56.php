@@ -1,9 +1,9 @@
 <?php
-// source: /Applications/MAMP/htdocs/mysocialnetwork/app/presenters/templates/components/header.latte
+// source: /Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/presenters/templates/components/header.latte
 
 use Latte\Runtime as LR;
 
-class Template0a77007924 extends Latte\Runtime\Template
+class Template11c00afc56 extends Latte\Runtime\Template
 {
 
 	function main()
