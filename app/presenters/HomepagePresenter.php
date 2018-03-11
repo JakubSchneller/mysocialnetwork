@@ -3,6 +3,8 @@
 namespace App\Presenters;
 
 use Nette\Database\Context;
+use Nette\Application\UI\Form;
+use Nette\Utils\DateTime;
 
 class HomepagePresenter extends BasePresenter
 {
@@ -17,7 +19,7 @@ class HomepagePresenter extends BasePresenter
     public function renderDefault()
     {
         $postsArray = [];
-        $posts = $this->database->table("posts");
+        $posts = $this->database->table("posts")->order('post_id DESC');
 
         foreach ($posts as $iPost) {
             $postsArray[$iPost->post_id] = [
@@ -40,6 +42,28 @@ class HomepagePresenter extends BasePresenter
                 ->insert(['post_id' => $postId, 'user_id' => $this->getUser()->getId()]);
         }
         $this->redirect('Homepage:default');
+    }
+
+    protected function createComponentAddPost()
+    {
+        $form = new Form;
+        $form->addText("content")
+            ->setRequired("Vyplňte prosím obsah komentáře");
+        $form->addSubmit("submit");
+        $form->onSuccess[] = [$this, 'addPostSuccess'];
+        return $form;
+    }
+
+    public function addPostSuccess($form, $values)
+    {
+        $this->database->table('posts')->insert([
+            'post_content' => $values->content,
+            'post_date' => new DateTime(),
+            'post_creator' => $this->getUser()->getIdentity()->user_name,
+            'post_creator_id'   => $this->getUser()->getIdentity()->user_id,
+            'post_creator_image' => $this->getUser()->getIdentity()->image
+        ]);
+        $this->redirect('this');
     }
 
 }

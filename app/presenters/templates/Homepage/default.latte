@@ -1,7 +1,24 @@
 {block content}
 <div class="container bootstrap snippet">
-<div class="col-sm-8 col-sm-offset-2">
-    {foreach $posts as $post}
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="bootstrap snippet">
+                    <div class="well well-sm well-social-post">
+                        <form n:name="addPost">
+                            <ul class="list-inline" id='list_PostActions'>
+                                <li class='active'><a href='#'>Přidat příspěvek</a></li>
+                                <li><a href='#'>Přidat obrázek</a></li>
+                                <li><a href='#'>Přidat video</a></li>
+                            </ul>
+                            <textarea n:name="content" class="form-control" placeholder="Jak se cítíš?"></textarea>
+                            <ul class='list-inline post-actions'>
+                                <li class='pull-left'><button n:name="submit" class='btn btn-primary btn-sm'>Přidat příspěvek</button></li>
+                                <br>
+                                <br>
+                            </ul>
+                        </form>
+                    </div>
+        </div>
+        {foreach $posts as $post}
     <div class="panel panel-white post panel-shadow">
         <div class="post-heading">
             <div class="pull-left image">
@@ -34,6 +51,5 @@
         </div>
     </div>
     {/foreach}
-
-</div>
+    </div>
 </div>

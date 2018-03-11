@@ -26,7 +26,7 @@ class Template4de89e7477 extends Latte\Runtime\Template
 	function prepare()
 	{
 		extract($this->params);
-		if (isset($this->params['post'])) trigger_error('Variable $post overwritten in foreach on line 4');
+		if (isset($this->params['post'])) trigger_error('Variable $post overwritten in foreach on line 21');
 		Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
 		
 	}
@@ -37,7 +37,39 @@ class Template4de89e7477 extends Latte\Runtime\Template
 		extract($_args);
 ?>
 <div class="container bootstrap snippet">
-<div class="col-sm-8 col-sm-offset-2">
+    <div class="col-sm-8 col-sm-offset-2">
+        <div class="bootstrap snippet">
+                    <div class="well well-sm well-social-post">
+<?php
+		$form = $_form = $this->global->formsStack[] = $this->global->uiControl["addPost"];
+		?>                        <form<?php
+		echo Nette\Bridges\FormsLatte\Runtime::renderFormBegin(end($this->global->formsStack), array (
+		), false) ?>>
+                            <ul class="list-inline" id='list_PostActions'>
+                                <li class='active'><a href='#'>Přidat příspěvek</a></li>
+                                <li><a href='#'>Přidat obrázek</a></li>
+                                <li><a href='#'>Přidat video</a></li>
+                            </ul>
+                            <textarea class="form-control" placeholder="Jak se cítíš?"<?php
+		$_input = end($this->global->formsStack)["content"];
+		echo $_input->getControlPart()->addAttributes(array (
+		'class' => NULL,
+		'placeholder' => NULL,
+		))->attributes() ?>><?php echo $_input->getControl()->getHtml() ?></textarea>
+                            <ul class='list-inline post-actions'>
+                                <li class='pull-left'><button class='btn btn-primary btn-sm'<?php
+		$_input = end($this->global->formsStack)["submit"];
+		echo $_input->getControlPart()->addAttributes(array (
+		'class' => NULL,
+		))->attributes() ?>>Přidat příspěvek</button></li>
+                                <br>
+                                <br>
+                            </ul>
+<?php
+		echo Nette\Bridges\FormsLatte\Runtime::renderFormEnd(array_pop($this->global->formsStack), false);
+?>                        </form>
+                    </div>
+        </div>
 <?php
 		$iterations = 0;
 		foreach ($posts as $post) {
@@ -45,18 +77,18 @@ class Template4de89e7477 extends Latte\Runtime\Template
     <div class="panel panel-white post panel-shadow">
         <div class="post-heading">
             <div class="pull-left image">
-                <img src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($post['posts']->post_creator_image)) /* line 8 */ ?>" class="img-circle avatar" alt="user profile image">
+                <img src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($post['posts']->post_creator_image)) /* line 25 */ ?>" class="img-circle avatar" alt="user profile image">
             </div>
             <div class="pull-left meta">
                 <div class="title h5">
-                    <a href="#"><b><?php echo LR\Filters::escapeHtmlText($post['posts']->post_creator) /* line 12 */ ?></b></a>
+                    <a href="#"><b><?php echo LR\Filters::escapeHtmlText($post['posts']->post_creator) /* line 29 */ ?></b></a>
                     vytvořil/a příspěvek
                 </div>
-                <h6 class="text-muted time"><?php echo LR\Filters::escapeHtmlText($post['posts']->post_date) /* line 15 */ ?></h6>
+                <h6 class="text-muted time"><?php echo LR\Filters::escapeHtmlText($post['posts']->post_date) /* line 32 */ ?></h6>
             </div>
         </div>
         <div class="post-description">
-            <p><?php echo LR\Filters::escapeHtmlText($post['posts']->post_content) /* line 19 */ ?></p>
+            <p><?php echo LR\Filters::escapeHtmlText($post['posts']->post_content) /* line 36 */ ?></p>
             <div class="stats">
 <?php
 			if ($post['likesCount'] == 0) {
@@ -67,7 +99,7 @@ class Template4de89e7477 extends Latte\Runtime\Template
 			}
 			else {
 				?>                    <a class="btn btn-default stat-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Homepage:likePost", ['postId' => $post['posts']->post_id])) ?>">
-                        <i class="glyphicon glyphicon-thumbs-up"></i> <?php echo LR\Filters::escapeHtmlText($post['likesCount']) /* line 27 */ ?>
+                        <i class="glyphicon glyphicon-thumbs-up"></i> <?php echo LR\Filters::escapeHtmlText($post['likesCount']) /* line 44 */ ?>
 
                     </a>
 <?php
@@ -83,8 +115,7 @@ class Template4de89e7477 extends Latte\Runtime\Template
 			$iterations++;
 		}
 ?>
-
-</div>
+    </div>
 </div>
 <?php
 	}
