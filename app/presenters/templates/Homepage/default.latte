@@ -5,22 +5,28 @@
     <div class="panel panel-white post panel-shadow">
         <div class="post-heading">
             <div class="pull-left image">
-                <img src="{$post->post_creator_image}" class="img-circle avatar" alt="user profile image">
+                <img src="{$post['posts']->post_creator_image}" class="img-circle avatar" alt="user profile image">
             </div>
             <div class="pull-left meta">
                 <div class="title h5">
-                    <a href="#"><b>{$post->post_creator}</b></a>
+                    <a href="#"><b>{$post['posts']->post_creator}</b></a>
                     vytvořil/a příspěvek
                 </div>
-                <h6 class="text-muted time">{$post->post_date}</h6>
+                <h6 class="text-muted time">{$post['posts']->post_date}</h6>
             </div>
         </div>
         <div class="post-description">
-            <p>{$post->post_content}</p>
+            <p>{$post['posts']->post_content}</p>
             <div class="stats">
-                <a href="#" class="btn btn-default stat-item">
-                    <i class="glyphicon glyphicon-thumbs-up"></i> 2
-                </a>
+                {if $post['likesCount'] == 0}
+                    <a n:href="Homepage:likePost, 'postId' => $post['posts']->post_id" class="btn btn-default stat-item">
+                        <i class="glyphicon glyphicon-thumbs-up"></i>
+                    </a>
+                {else}
+                    <a n:href="Homepage:likePost, 'postId' => $post['posts']->post_id" class="btn btn-default stat-item">
+                        <i class="glyphicon glyphicon-thumbs-up"></i> {$post['likesCount']}
+                    </a>
+                {/if}
                 <a href="#" class="btn btn-default stat-item">
                     <i class="glyphicon glyphicon-share"></i> 12
                 </a>
