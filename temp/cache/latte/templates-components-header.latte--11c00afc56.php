@@ -23,14 +23,9 @@ class Template11c00afc56 extends Latte\Runtime\Template
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li ><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Homepage:default")) ?>">Feed <span class="sr-only"></span></a></li>
+				<li ><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Homepage:default")) ?>">Příspěvky <span class="sr-only"></span></a></li>
+				<li ><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Search:searchform")) ?>">Vyhledávání <span class="sr-only"></span></a></li>
 			</ul>
-			<form class="navbar-form navbar-left form-horizontal" role="search">
-				<div class="input-group">
-					<input type="text" class="search-box" placeholder="Search">
-					<button type="submit" class="btn"><span class=""></span></button>
-				</div>
-			</form>
 			<ul class="nav navbar-nav navbar-right">
 <?php
 		if ($user->isLoggedIn()) {
@@ -38,7 +33,7 @@ class Template11c00afc56 extends Latte\Runtime\Template
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="<?php
 			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Profile:profile")) ?>">
-							Přihlášen jako: <?php echo LR\Filters::escapeHtmlText($loggedin->user_name) /* line 26 */ ?>
+							Přihlášen jako: <?php echo LR\Filters::escapeHtmlText($loggedin->user_name) /* line 21 */ ?>
 
 						</a>
 						<ul class="dropdown-menu">
