@@ -24,22 +24,22 @@ Z přiložené ho projektu vytvořte plně funkční sociální síť.<br>
 V kořenu repozitáře vytvořte soubor README.md s popisem postupu nasazení vaší aplikace.
 - Uživatelé
     - Systém přátelství
-    - Stránky profilů
-        - Úprava profilu
+    - Stránky profilů 
+        - Úprava profilu (hotovo)
         - Nahrávání headeru
         - Nahrávání profilového obrázku
         - Počet přátel
     - Společné skupiny (jako ta naše na FB)
-    - Registrace
-    - Přihlášení
+    - Registrace (hotovo)
+    - Přihlášení (hotovo)
     - Vyhledávání uživatelů
     
 - Feed / Nejnovější příspěvky uživatelů (známe z facebooku)
-    - Příspěvky
-    - Hodnocení (like)
+    - Příspěvky (hotovo)
+    - Hodnocení (like) (hotovo)
     - Sdílení
     - Sdílení obrázků
     - Sdílení youtube videí
-    - Čas přidání příspěkuawbcavku
+    - Čas přidání příspěvku (hotovo)
     - Mazání příspěvků
     - Nahrávání příspěvků přes ajax
