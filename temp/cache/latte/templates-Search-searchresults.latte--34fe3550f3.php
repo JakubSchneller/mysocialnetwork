@@ -26,6 +26,7 @@ class Template34fe3550f3 extends Latte\Runtime\Template
 	function prepare()
 	{
 		extract($this->params);
+		if (isset($this->params['user'])) trigger_error('Variable $user overwritten in foreach on line 18');
 		Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
 		
 	}
@@ -35,58 +36,50 @@ class Template34fe3550f3 extends Latte\Runtime\Template
 	{
 		extract($_args);
 ?>
-<div class="container-fluid">
+<div class="container bootstrap snippet">
     <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-6 col-lg-offset-3">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div id="cover" class="col-md-12">
-                            <div align="center">
-                                <a class="" href="#">
-                                    <img class="media-object dp img-circle" src="../<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($users->image)) /* line 11 */ ?>" style="width: 180px;height:180px;">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <h2 align="center"><?php echo LR\Filters::escapeHtmlText($users->first_name) /* line 16 */ ?> <?php
-		echo LR\Filters::escapeHtmlText($users->last_name) /* line 16 */ ?></h2>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="control-label" for="disabledInput">Křestní jméno:</label>
-                                <input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->first_name) /* line 21 */ ?>" disabled="" type="text">
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label" for="disabledInput">Příjmení:</label>
-                                <input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->last_name) /* line 26 */ ?>" disabled="" type="text">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="disabledInput">Datum registrace:</label>
-                                <input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->date_created) /* line 30 */ ?>" disabled="" type="text">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="disabledInput">Email:</label>
-                                <input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->user_email) /* line 34 */ ?>" disabled="" type="text">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="disabledInput">Přihlašovací jméno:</label>
-                                <input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->user_name) /* line 38 */ ?>" disabled="" type="text">
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="disabledInput">Role:</label>
-                                <input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->role) /* line 42 */ ?>" disabled="" type="text">
-                            </div>
-                            </p>
-                        </div>
+        <div class="col-lg-12">
+            <div class="main-box no-header clearfix">
+                <div class="main-box-body clearfix">
+                    <div class="table-responsive">
+                        <table class="table user-list">
+                            <thead>
+                            <tr>
+                                <th><span>Přihlašovací jméno</span></th>
+                                <th><span>Email</span></th>
+                                <th><span>Založeno</span></th>
+                                <th><span>Naposledy upraveno</span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+<?php
+		$iterations = 0;
+		foreach ($users as $user) {
+?>
+                            <tr>
+                                <td>
+                                    <img src="../<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($user->image)) /* line 21 */ ?>" alt="">
+                                    <a class="user-link" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Profile:profile", ['userId' => $user->user_id])) ?>"><?php
+			echo LR\Filters::escapeHtmlText($user->first_name) /* line 22 */ ?> <?php echo LR\Filters::escapeHtmlText($user->last_name) /* line 22 */ ?></a>
+                                    <span class="user-subhead"><?php echo LR\Filters::escapeHtmlText($user->role) /* line 23 */ ?></span>
+                                </td>
+                                <td>
+                                    <a href="#"><?php echo LR\Filters::escapeHtmlText($user->user_email) /* line 26 */ ?></a>
+                                </td>
+                                <td><?php echo LR\Filters::escapeHtmlText($user->date_created) /* line 28 */ ?></td>
+                                <td><?php echo LR\Filters::escapeHtmlText($user->last_updated) /* line 29 */ ?></td>
+                            </tr>
+<?php
+			$iterations++;
+		}
+?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4"></div>
     </div>
-</div>
 </div><?php
 	}
 

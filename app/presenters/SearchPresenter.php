@@ -44,20 +44,34 @@ class SearchPresenter extends BasePresenter
     {
         if($category == "Přihlašovací jméno")
         {
-            $users = $this->database->table('users')->where('user_name', $content)->fetch();
+            $users = $this->database->table('users')->where('user_name', $content);
             $this->template->users = $users;
+            if (empty($row['user_id']))
+            {
+                $this->getPresenter()->flashMessage('Žádný takový uživatel neexistuje!', 'danger');
+                $this->redirect('Search:searchform');
+            }
         }
         elseif ($category == "Křestní jméno")
         {
-            $users = $this->database->table('users')->where('first_name', $content)->fetch();
+            $users = $this->database->table('users')->where('first_name', $content);
             $this->template->users = $users;
+            if (empty($row['user_id']))
+            {
+                $this->getPresenter()->flashMessage('Žádný takový uživatel neexistuje!', 'danger');
+                $this->redirect('Search:searchform');
+            }
         }
         else
         {
-            $users = $this->database->table('users')->where('last_name', $content)->fetch();
+            $users = $this->database->table('users')->where('last_name', $content);
             $this->template->users = $users;
+            if (empty($row['user_id']))
+            {
+                $this->getPresenter()->flashMessage('Žádný takový uživatel neexistuje!', 'danger');
+                $this->redirect('Search:searchform');
+            }
         }
-
     }
 
 

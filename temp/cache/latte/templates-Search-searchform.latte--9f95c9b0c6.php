@@ -55,7 +55,7 @@ class Template9f95c9b0c6 extends Latte\Runtime\Template
 		))->attributes() ?>>
 <?php echo $_input->getControl()->getHtml() ?>                        </select>
                     </div>
-                    <input type="text" class="form-control" placeholder="Search term..."<?php
+                    <input type="text" class="form-control" placeholder="Vyhledávat..."<?php
 		$_input = end($this->global->formsStack)["content"];
 		echo $_input->getControlPart()->addAttributes(array (
 		'type' => NULL,

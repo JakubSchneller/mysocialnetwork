@@ -46,14 +46,13 @@ class Template17da9bfa2d extends Latte\Runtime\Template
 		$this->createTemplate("components/header.latte", $this->params, "include")->renderToContentType('html');
 ?>
 </header>
-
 <?php
 		$iterations = 0;
 		foreach ($flashes as $flash) {
 			if ($flash->type == 'success') {
 ?>
 		<div class="alert alert-success" role="alert">
-            <?php echo LR\Filters::escapeHtmlText($flash->message) /* line 35 */ ?>
+            <?php echo LR\Filters::escapeHtmlText($flash->message) /* line 34 */ ?>
 
 		</div>
 <?php
@@ -61,7 +60,7 @@ class Template17da9bfa2d extends Latte\Runtime\Template
 			elseif ($flash->type == 'danger') {
 ?>
 		<div class="alert alert-danger" role="alert">
-            <?php echo LR\Filters::escapeHtmlText($flash->message) /* line 39 */ ?>
+            <?php echo LR\Filters::escapeHtmlText($flash->message) /* line 38 */ ?>
 
 		</div>
 <?php
@@ -69,7 +68,7 @@ class Template17da9bfa2d extends Latte\Runtime\Template
 			elseif ($flash->type == 'warning') {
 ?>
 		<div class="alert alert-warning" role="alert">
-            <?php echo LR\Filters::escapeHtmlText($flash->message) /* line 43 */ ?>
+            <?php echo LR\Filters::escapeHtmlText($flash->message) /* line 42 */ ?>
 
 		</div>
 <?php
@@ -77,17 +76,17 @@ class Template17da9bfa2d extends Latte\Runtime\Template
 			else {
 ?>
 		<div class="alert alert-secondary" role="alert">
-            <?php echo LR\Filters::escapeHtmlText($flash->message) /* line 47 */ ?>
+            <?php echo LR\Filters::escapeHtmlText($flash->message) /* line 46 */ ?>
 
 		</div>
 <?php
 			}
 			$iterations++;
 		}
+		$this->renderBlock('content', $this->params, 'html');
 ?>
 
 <?php
-		$this->renderBlock('content', $this->params, 'html');
 		if ($this->getParentName()) return get_defined_vars();
 		$this->renderBlock('scripts', get_defined_vars());
 ?>
@@ -100,7 +99,7 @@ class Template17da9bfa2d extends Latte\Runtime\Template
 	function prepare()
 	{
 		extract($this->params);
-		if (isset($this->params['flash'])) trigger_error('Variable $flash overwritten in foreach on line 32');
+		if (isset($this->params['flash'])) trigger_error('Variable $flash overwritten in foreach on line 31');
 		Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
 		
 	}
@@ -111,8 +110,8 @@ class Template17da9bfa2d extends Latte\Runtime\Template
 		extract($_args);
 ?>
 	<script src="http://code.jquery.com/jquery-3.3.1.slim.js" integrity="sha256-fNXJFIlca05BIO2Y5zh1xrShK3ME+/lYZ0j+ChxX2DA=" crossorigin="anonymous"></script>
-	<script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 55 */ ?>/bootstrap/js/bootstrap.min.js"></script>
-	<script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 56 */ ?>/js/main.js"></script>
+	<script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 54 */ ?>/bootstrap/js/bootstrap.min.js"></script>
+	<script src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($basePath)) /* line 55 */ ?>/js/main.js"></script>
 	<script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
 <?php
 	}
