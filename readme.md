@@ -32,7 +32,7 @@ V kořenu repozitáře vytvořte soubor README.md s popisem postupu nasazení va
     - Společné skupiny (jako ta naše na FB)
     - Registrace (hotovo)
     - Přihlášení (hotovo)
-    - Vyhledávání uživatelů
+    - Vyhledávání uživatelů (hotovo, chce to ještě zdokonalení)
     
 - Feed / Nejnovější příspěvky uživatelů (známe z facebooku)
     - Příspěvky (hotovo)
