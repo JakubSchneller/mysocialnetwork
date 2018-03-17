@@ -38,7 +38,7 @@
                     </div>
                 </div>
 
-                    <div class="panel panel-white post panel-shadow">
+                    <div class="panel panel-white post panel-shadow" style="margin-left: 30px; margin-right: 30px">
                         <div class="post-heading">
                             <div class="pull-left image">
                                 <img src="{$sharedpost['posts']->post_creator_image}" class="img-circle avatar" alt="user profile image">
@@ -54,18 +54,18 @@
                         <div class="post-description">
                             <p>{$sharedpost['posts']->post_content}</p>
                         </div>
+                    </div>
 
-                    <div class="stats">
-                        {*{if $sharedpost['likesCount'] == 0}
-                        <a n:href="Homepage:likePost, 'postId' => $post['posts']->post_id" class="btn btn-default stat-item">
+                <div class="stats" style="padding-left: 15px; padding-bottom: 15px">
+                    {if $sharedpost['likesCount'] == 0}
+                        <a n:href="Homepage:likeSharedPost, 'postId' => $sharedpost['posts']->post_id" class="btn btn-default stat-item">
                             <i class="glyphicon glyphicon-thumbs-up"></i>
                         </a>
-                        {else}
-                        <a n:href="Homepage:likePost, 'postId' => $post['posts']->post_id" class="btn btn-default stat-item">
-                            <i class="glyphicon glyphicon-thumbs-up"></i> {$post['likesCount']}
+                    {else}
+                        <a n:href="Homepage:likeSharedPost, 'postId' => $sharedpost['posts']->post_id" class="btn btn-default stat-item">
+                            <i class="glyphicon glyphicon-thumbs-up"></i> {$sharedpost['likesCount']}
                         </a>
-                        {/if}*}
-                    </div>
+                    {/if}
                 </div>
             </div>
         {/foreach}
@@ -101,7 +101,7 @@
                     </a>
                 {/if}
                 <a n:href="Homepage:sharePost, 'postId' => $post['posts']->post_id" class="btn btn-default stat-item">
-                    <i class="glyphicon glyphicon-share"></i> 12
+                    <i class="glyphicon glyphicon-share"></i> {$post['sharesCount']}
                 </a>
             </div>
         </div>

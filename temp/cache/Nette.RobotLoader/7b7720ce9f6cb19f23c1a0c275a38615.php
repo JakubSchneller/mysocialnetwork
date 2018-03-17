@@ -70,7 +70,7 @@ return array (
     'App\\Presenters\\HomepagePresenter' => 
     array (
       'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/presenters/HomepagePresenter.php',
-      'time' => 1521319104,
+      'time' => 1521321659,
     ),
   ),
   1 => 

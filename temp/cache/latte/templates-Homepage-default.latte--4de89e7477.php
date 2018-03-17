@@ -100,7 +100,7 @@ class Template4de89e7477 extends Latte\Runtime\Template
                     </div>
                 </div>
 
-                    <div class="panel panel-white post panel-shadow">
+                    <div class="panel panel-white post panel-shadow" style="margin-left: 30px; margin-right: 30px">
                         <div class="post-heading">
                             <div class="pull-left image">
                                 <img src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($sharedpost['posts']->post_creator_image)) /* line 44 */ ?>" class="img-circle avatar" alt="user profile image">
@@ -116,9 +116,24 @@ class Template4de89e7477 extends Latte\Runtime\Template
                         <div class="post-description">
                             <p><?php echo LR\Filters::escapeHtmlText($sharedpost['posts']->post_content) /* line 55 */ ?></p>
                         </div>
-
-                    <div class="stats">
                     </div>
+
+                <div class="stats" style="padding-left: 15px; padding-bottom: 15px">
+<?php
+			if ($sharedpost['likesCount'] == 0) {
+				?>                        <a class="btn btn-default stat-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Homepage:likeSharedPost", ['postId' => $sharedpost['posts']->post_id])) ?>">
+                            <i class="glyphicon glyphicon-thumbs-up"></i>
+                        </a>
+<?php
+			}
+			else {
+				?>                        <a class="btn btn-default stat-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Homepage:likeSharedPost", ['postId' => $sharedpost['posts']->post_id])) ?>">
+                            <i class="glyphicon glyphicon-thumbs-up"></i> <?php echo LR\Filters::escapeHtmlText($sharedpost['likesCount']) /* line 66 */ ?>
+
+                        </a>
+<?php
+			}
+?>
                 </div>
             </div>
 <?php
@@ -168,7 +183,8 @@ class Template4de89e7477 extends Latte\Runtime\Template
 <?php
 			}
 			?>                <a class="btn btn-default stat-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Homepage:sharePost", ['postId' => $post['posts']->post_id])) ?>">
-                    <i class="glyphicon glyphicon-share"></i> 12
+                    <i class="glyphicon glyphicon-share"></i> <?php echo LR\Filters::escapeHtmlText($post['sharesCount']) /* line 104 */ ?>
+
                 </a>
             </div>
         </div>
