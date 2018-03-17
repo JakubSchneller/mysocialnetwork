@@ -18,12 +18,68 @@
                         </form>
                     </div>
         </div>
+        {foreach $sharedposts as $sharedpost}
+            <div class="panel panel-white post panel-shadow">
+                <div class="post-heading">
+                    <div class="pull-left image">
+                        <img src="{$sharedpost['posts']->post_sharer_image}" class="img-circle avatar" alt="user profile image">
+                    </div>
+                    {if $user->isInRole('admin') || $user->isInRole('owner')}
+                    <div class="pull-right">
+                        <a n:href="deleteSharedPost!, 'postId' => $sharedpost['posts']->post_id" onClick="return confirm('Opravdu smazat?');" type="button" class="btn-remove btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+                    {/if}
+                    <div class="pull-left meta">
+                        <div class="title h5">
+                            <a href="#"><b>{$sharedpost['posts']->post_sharer}</b></a>
+                            sdílel/a příspěvek uživatele <b><a n:href="Profile:profile, 'userId' => $sharedpost['posts']->post_creator_id">{$sharedpost['posts']->post_creator}</a></b>
+                        </div>
+                        <h6 class="text-muted time">{$sharedpost['posts']->post_shareddate}</h6>
+                    </div>
+                </div>
+
+                    <div class="panel panel-white post panel-shadow">
+                        <div class="post-heading">
+                            <div class="pull-left image">
+                                <img src="{$sharedpost['posts']->post_creator_image}" class="img-circle avatar" alt="user profile image">
+                            </div>
+                            <div class="pull-left meta">
+                                <div class="title h5">
+                                    <a href="#"><b>{$sharedpost['posts']->post_creator}</b></a>
+                                    vytvořil/a příspěvek
+                                </div>
+                                <h6 class="text-muted time">{$sharedpost['posts']->post_shareddate}</h6>
+                            </div>
+                        </div>
+                        <div class="post-description">
+                            <p>{$sharedpost['posts']->post_content}</p>
+                        </div>
+
+                    <div class="stats">
+                        {*{if $sharedpost['likesCount'] == 0}
+                        <a n:href="Homepage:likePost, 'postId' => $post['posts']->post_id" class="btn btn-default stat-item">
+                            <i class="glyphicon glyphicon-thumbs-up"></i>
+                        </a>
+                        {else}
+                        <a n:href="Homepage:likePost, 'postId' => $post['posts']->post_id" class="btn btn-default stat-item">
+                            <i class="glyphicon glyphicon-thumbs-up"></i> {$post['likesCount']}
+                        </a>
+                        {/if}*}
+                    </div>
+                </div>
+            </div>
+        {/foreach}
         {foreach $posts as $post}
     <div class="panel panel-white post panel-shadow">
         <div class="post-heading">
             <div class="pull-left image">
                 <img src="{$post['posts']->post_creator_image}" class="img-circle avatar" alt="user profile image">
             </div>
+            {if $user->isInRole('admin') || $user->isInRole('owner')}
+                <div class="pull-right">
+                    <a n:href="deletePost!, 'postId' => $post['posts']->post_id" onClick="return confirm('Opravdu smazat?');" type="button" class="btn-remove btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+            {/if}
             <div class="pull-left meta">
                 <div class="title h5">
                     <a href="#"><b>{$post['posts']->post_creator}</b></a>
@@ -44,7 +100,7 @@
                         <i class="glyphicon glyphicon-thumbs-up"></i> {$post['likesCount']}
                     </a>
                 {/if}
-                <a href="#" class="btn btn-default stat-item">
+                <a n:href="Homepage:sharePost, 'postId' => $post['posts']->post_id" class="btn btn-default stat-item">
                     <i class="glyphicon glyphicon-share"></i> 12
                 </a>
             </div>

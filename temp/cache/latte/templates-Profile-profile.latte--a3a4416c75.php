@@ -52,34 +52,43 @@ class Templatea3a4416c75 extends Latte\Runtime\Template
 									<h2 align="center"><?php echo LR\Filters::escapeHtmlText($users->first_name) /* line 16 */ ?> <?php
 		echo LR\Filters::escapeHtmlText($users->last_name) /* line 16 */ ?></h2>
 									<div class="text-center">
-									<a type="button" class="btn btn-success" style="margin: auto" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Profile:editprofile", ['userId' => $users->user_id])) ?>">Editovat</a>
+<?php
+		if ($user->isInRole('admin') || $user->isInRole('owner')) {
+			?>										<a type="button" class="btn btn-success" style="margin: auto" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Profile:editprofile", ['userId' => $users->user_id])) ?>">Editovat</a>
+<?php
+		}
+		elseif ($loggedin->user_id == $users->user_id) {
+			?>										<a type="button" class="btn btn-success" style="margin: auto" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Profile:editprofile", ['userId' => $users->user_id])) ?>">Editovat</a>
+<?php
+		}
+?>
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
 										<label class="control-label" for="disabledInput">Křestní jméno:</label>
-										<input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->first_name) /* line 24 */ ?>" disabled="" type="text">
+										<input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->first_name) /* line 28 */ ?>" disabled="" type="text">
 									</div>
 
 									<div class="form-group">
 										<label class="control-label" for="disabledInput">Příjmení:</label>
-										<input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->last_name) /* line 29 */ ?>" disabled="" type="text">
+										<input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->last_name) /* line 33 */ ?>" disabled="" type="text">
 									</div>
 									<div class="form-group">
 										<label class="control-label" for="disabledInput">Datum registrace:</label>
-										<input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->date_created) /* line 33 */ ?>" disabled="" type="text">
+										<input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->date_created) /* line 37 */ ?>" disabled="" type="text">
 									</div>
 									<div class="form-group">
 										<label class="control-label" for="disabledInput">Email:</label>
-										<input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->user_email) /* line 37 */ ?>" disabled="" type="text">
+										<input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->user_email) /* line 41 */ ?>" disabled="" type="text">
 									</div>
 									<div class="form-group">
 										<label class="control-label" for="disabledInput">Přihlašovací jméno:</label>
-										<input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->user_name) /* line 41 */ ?>" disabled="" type="text">
+										<input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->user_name) /* line 45 */ ?>" disabled="" type="text">
 									</div>
 									<div class="form-group">
 										<label class="control-label" for="disabledInput">Role:</label>
-										<input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->role) /* line 45 */ ?>" disabled="" type="text">
+										<input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->role) /* line 49 */ ?>" disabled="" type="text">
 									</div>
 									</p>
 								</div>

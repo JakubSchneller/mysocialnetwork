@@ -26,7 +26,8 @@ class Template4de89e7477 extends Latte\Runtime\Template
 	function prepare()
 	{
 		extract($this->params);
-		if (isset($this->params['post'])) trigger_error('Variable $post overwritten in foreach on line 21');
+		if (isset($this->params['sharedpost'])) trigger_error('Variable $sharedpost overwritten in foreach on line 21');
+		if (isset($this->params['post'])) trigger_error('Variable $post overwritten in foreach on line 72');
 		Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
 		
 	}
@@ -72,23 +73,85 @@ class Template4de89e7477 extends Latte\Runtime\Template
         </div>
 <?php
 		$iterations = 0;
+		foreach ($sharedposts as $sharedpost) {
+?>
+            <div class="panel panel-white post panel-shadow">
+                <div class="post-heading">
+                    <div class="pull-left image">
+                        <img src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($sharedpost['posts']->post_sharer_image)) /* line 25 */ ?>" class="img-circle avatar" alt="user profile image">
+                    </div>
+<?php
+			if ($user->isInRole('admin') || $user->isInRole('owner')) {
+?>
+                    <div class="pull-right">
+                        <a onClick="return confirm('Opravdu smazat?');" type="button" class="btn-remove btn btn-danger btn-xs" href="<?php
+				echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("deleteSharedPost!", ['postId' => $sharedpost['posts']->post_id])) ?>"><span class="glyphicon glyphicon-remove"></span></a>
+                    </div>
+<?php
+			}
+?>
+                    <div class="pull-left meta">
+                        <div class="title h5">
+                            <a href="#"><b><?php echo LR\Filters::escapeHtmlText($sharedpost['posts']->post_sharer) /* line 34 */ ?></b></a>
+                            sdílel/a příspěvek uživatele <b><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Profile:profile", ['userId' => $sharedpost['posts']->post_creator_id])) ?>"><?php
+			echo LR\Filters::escapeHtmlText($sharedpost['posts']->post_creator) /* line 35 */ ?></a></b>
+                        </div>
+                        <h6 class="text-muted time"><?php echo LR\Filters::escapeHtmlText($sharedpost['posts']->post_shareddate) /* line 37 */ ?></h6>
+                    </div>
+                </div>
+
+                    <div class="panel panel-white post panel-shadow">
+                        <div class="post-heading">
+                            <div class="pull-left image">
+                                <img src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($sharedpost['posts']->post_creator_image)) /* line 44 */ ?>" class="img-circle avatar" alt="user profile image">
+                            </div>
+                            <div class="pull-left meta">
+                                <div class="title h5">
+                                    <a href="#"><b><?php echo LR\Filters::escapeHtmlText($sharedpost['posts']->post_creator) /* line 48 */ ?></b></a>
+                                    vytvořil/a příspěvek
+                                </div>
+                                <h6 class="text-muted time"><?php echo LR\Filters::escapeHtmlText($sharedpost['posts']->post_shareddate) /* line 51 */ ?></h6>
+                            </div>
+                        </div>
+                        <div class="post-description">
+                            <p><?php echo LR\Filters::escapeHtmlText($sharedpost['posts']->post_content) /* line 55 */ ?></p>
+                        </div>
+
+                    <div class="stats">
+                    </div>
+                </div>
+            </div>
+<?php
+			$iterations++;
+		}
+		$iterations = 0;
 		foreach ($posts as $post) {
 ?>
     <div class="panel panel-white post panel-shadow">
         <div class="post-heading">
             <div class="pull-left image">
-                <img src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($post['posts']->post_creator_image)) /* line 25 */ ?>" class="img-circle avatar" alt="user profile image">
+                <img src="<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($post['posts']->post_creator_image)) /* line 76 */ ?>" class="img-circle avatar" alt="user profile image">
             </div>
+<?php
+			if ($user->isInRole('admin') || $user->isInRole('owner')) {
+?>
+                <div class="pull-right">
+                    <a onClick="return confirm('Opravdu smazat?');" type="button" class="btn-remove btn btn-danger btn-xs" href="<?php
+				echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("deletePost!", ['postId' => $post['posts']->post_id])) ?>"><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+<?php
+			}
+?>
             <div class="pull-left meta">
                 <div class="title h5">
-                    <a href="#"><b><?php echo LR\Filters::escapeHtmlText($post['posts']->post_creator) /* line 29 */ ?></b></a>
+                    <a href="#"><b><?php echo LR\Filters::escapeHtmlText($post['posts']->post_creator) /* line 85 */ ?></b></a>
                     vytvořil/a příspěvek
                 </div>
-                <h6 class="text-muted time"><?php echo LR\Filters::escapeHtmlText($post['posts']->post_date) /* line 32 */ ?></h6>
+                <h6 class="text-muted time"><?php echo LR\Filters::escapeHtmlText($post['posts']->post_date) /* line 88 */ ?></h6>
             </div>
         </div>
         <div class="post-description">
-            <p><?php echo LR\Filters::escapeHtmlText($post['posts']->post_content) /* line 36 */ ?></p>
+            <p><?php echo LR\Filters::escapeHtmlText($post['posts']->post_content) /* line 92 */ ?></p>
             <div class="stats">
 <?php
 			if ($post['likesCount'] == 0) {
@@ -99,13 +162,12 @@ class Template4de89e7477 extends Latte\Runtime\Template
 			}
 			else {
 				?>                    <a class="btn btn-default stat-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Homepage:likePost", ['postId' => $post['posts']->post_id])) ?>">
-                        <i class="glyphicon glyphicon-thumbs-up"></i> <?php echo LR\Filters::escapeHtmlText($post['likesCount']) /* line 44 */ ?>
+                        <i class="glyphicon glyphicon-thumbs-up"></i> <?php echo LR\Filters::escapeHtmlText($post['likesCount']) /* line 100 */ ?>
 
                     </a>
 <?php
 			}
-?>
-                <a href="#" class="btn btn-default stat-item">
+			?>                <a class="btn btn-default stat-item" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Homepage:sharePost", ['postId' => $post['posts']->post_id])) ?>">
                     <i class="glyphicon glyphicon-share"></i> 12
                 </a>
             </div>

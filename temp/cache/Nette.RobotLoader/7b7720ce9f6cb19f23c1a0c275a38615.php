@@ -42,11 +42,6 @@ return array (
       'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/presenters/ErrorPresenter.php',
       'time' => 1504886050,
     ),
-    'App\\Presenters\\HomepagePresenter' => 
-    array (
-      'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/presenters/HomepagePresenter.php',
-      'time' => 1520795823,
-    ),
     'App\\Presenters\\ProfilePresenter' => 
     array (
       'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/presenters/ProfilePresenter.php',
@@ -71,6 +66,11 @@ return array (
     array (
       'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/presenters/SearchPresenter.php',
       'time' => 1521051892,
+    ),
+    'App\\Presenters\\HomepagePresenter' => 
+    array (
+      'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/presenters/HomepagePresenter.php',
+      'time' => 1521319104,
     ),
   ),
   1 => 

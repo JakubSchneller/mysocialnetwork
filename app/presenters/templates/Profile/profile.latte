@@ -15,7 +15,11 @@
 								<div class="col-md-12">
 									<h2 align="center">{$users->first_name} {$users->last_name}</h2>
 									<div class="text-center">
-									<a n:href="Profile:editprofile, 'userId' => $users->user_id" type="button" class="btn btn-success" style="margin: auto">Editovat</a>
+									{if $user->isInRole('admin') || $user->isInRole('owner')}
+										<a n:href="Profile:editprofile, 'userId' => $users->user_id" type="button" class="btn btn-success" style="margin: auto">Editovat</a>
+                                    {elseif $loggedin->user_id == $users->user_id}
+										<a n:href="Profile:editprofile, 'userId' => $users->user_id" type="button" class="btn btn-success" style="margin: auto">Editovat</a>
+                                    {/if}
 									</div>
 								</div>
 								<div class="col-md-12">
