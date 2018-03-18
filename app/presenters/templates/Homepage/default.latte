@@ -58,11 +58,11 @@
 
                 <div class="stats" style="padding-left: 15px; padding-bottom: 15px">
                     {if $sharedpost['likesCount'] == 0}
-                        <a n:href="Homepage:likeSharedPost, 'postId' => $sharedpost['posts']->post_id" class="btn btn-default stat-item">
+                        <a n:href="Homepage:likeSharedPost, 'postId' => $sharedpost['posts']->post_id, 'sharedId' => $sharedpost['posts']->id" class="btn btn-default stat-item">
                             <i class="glyphicon glyphicon-thumbs-up"></i>
                         </a>
                     {else}
-                        <a n:href="Homepage:likeSharedPost, 'postId' => $sharedpost['posts']->post_id" class="btn btn-default stat-item">
+                        <a n:href="Homepage:likeSharedPost, 'postId' => $sharedpost['posts']->post_id, 'sharedId' => $sharedpost['posts']->id" class="btn btn-default stat-item">
                             <i class="glyphicon glyphicon-thumbs-up"></i> {$sharedpost['likesCount']}
                         </a>
                     {/if}

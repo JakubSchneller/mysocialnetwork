@@ -21,7 +21,7 @@ class HomepagePresenter extends BasePresenter
         $postsArray = [];
         $sharedpostsArray = [];
         $posts = $this->database->table("posts")->order('post_id DESC');
-        $sharedposts = $this->database->table("posts_shared")->order('post_id DESC');
+        $sharedposts = $this->database->table("posts_shared");
 
         foreach ($posts as $iPost) {
             $postsArray[$iPost->post_id] = [
@@ -33,9 +33,9 @@ class HomepagePresenter extends BasePresenter
         }
 
         foreach ($sharedposts as $iSharedPost) {
-            $sharedpostsArray[$iSharedPost->post_id] = [
+            $sharedpostsArray[$iSharedPost->id] = [
                 'posts' => $iSharedPost,
-                'likesCount' => $this->database->table("likes_shared")->where("post_id", $iSharedPost->post_id)->count()
+                'likesCount' => $this->database->table("likes_shared")->where("post_id = ? AND shared_post_id = ?", $iSharedPost->post_id, $iSharedPost->id)->count()
             ];
         }
         $this->template->posts = $postsArray;
@@ -87,7 +87,7 @@ class HomepagePresenter extends BasePresenter
 
     public function actionSharePost($postId) {
         $share = $this->database->table('posts')->where('post_id = ?', $postId)->fetch();
-        $alreadyshared = $this->database->table('posts_shared')->where('post_id = ? AND post_sharer_id = ?', $postId, $this->getUser()->getId());
+        $alreadyshared = $this->database->table('posts_shared')->where('post_id = ? AND post_sharer_id = ?', $postId, $this->getUser()->getId())->fetch();
         if ($alreadyshared) {
             $this->flashMessage('Tohle jsi už sdílel', 'warning');
         }
@@ -113,16 +113,16 @@ class HomepagePresenter extends BasePresenter
         $this->flashMessage('Příspěvek byl úspěšně smazán', 'success');
     }
 
-    public function actionLikeSharedPost($postId) {
+    public function actionLikeSharedPost($postId, $sharedId) {
         $like = $this->database->table('likes_shared')
-            ->where('post_id = ? AND user_id = ?', $postId, $this->getUser()->getId())
+            ->where('post_id = ? AND user_id = ? AND shared_post_id = ?', $postId, $this->getUser()->getId(), $sharedId)
             ->fetch();
         if ($like) {
             $this->flashMessage('Tohle jsi už lajknul', 'warning');
         }
         else {
             $this->database->table('likes_shared')
-                ->insert(['post_id' => $postId, 'user_id' => $this->getUser()->getId()]);
+                ->insert(['post_id' => $postId, 'user_id' => $this->getUser()->getId(), 'shared_post_id' => $sharedId]);
         }
         $this->redirect('Homepage:default');
     }
