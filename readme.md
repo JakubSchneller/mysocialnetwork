@@ -37,9 +37,9 @@ V kořenu repozitáře vytvořte soubor README.md s popisem postupu nasazení va
 - Feed / Nejnovější příspěvky uživatelů (známe z facebooku)
     - Příspěvky (hotovo)
     - Hodnocení (like) (hotovo)
-    - Sdílení (hotovo bez počtu liků nebo sharů)
+    - Sdílení (hotovo)
     - Sdílení obrázků
     - Sdílení youtube videí
     - Čas přidání příspěvku (hotovo)
-    - Mazání příspěvků
+    - Mazání příspěvků (hotovo)
     - Nahrávání příspěvků přes ajax (hotovo bez ajax)
