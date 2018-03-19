@@ -1,0 +1,101 @@
+{block content}
+{if $userscount == 1}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-6 col-lg-offset-3">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div id="cover" class="col-md-12">
+                                    <div align="center">
+                                        <a class="" href="#">
+                                            <img class="media-object dp img-circle" src="../{$users['users']->image}" style="width: 180px;height:180px;">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <h2 align="center">{$users['users']->first_name} {$users['users']->last_name}</h2>
+                                    <div class="text-center">
+                                        {if $user->isInRole('admin') || $user->isInRole('owner')}
+                                            <a n:href="Profile:editprofile, 'userId' => $users['users']->user_id" type="button" class="btn btn-success" style="margin: auto">Editovat</a>
+                                        {elseif $loggedin->user_id == $users->user_id}
+                                            <a n:href="Profile:editprofile, 'userId' => $users['users']->user_id" type="button" class="btn btn-success" style="margin: auto">Editovat</a>
+                                        {/if}
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label" for="disabledInput">Křestní jméno:</label>
+                                        <input class="form-control" id="disabledInput" placeholder="{$users['users']->first_name}" disabled="" type="text">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label" for="disabledInput">Příjmení:</label>
+                                        <input class="form-control" id="disabledInput" placeholder="{$users['users']->last_name}" disabled="" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="disabledInput">Datum registrace:</label>
+                                        <input class="form-control" id="disabledInput" placeholder="{$users['users']->date_created}" disabled="" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="disabledInput">Email:</label>
+                                        <input class="form-control" id="disabledInput" placeholder="{$users['users']->user_email}" disabled="" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="disabledInput">Přihlašovací jméno:</label>
+                                        <input class="form-control" id="disabledInput" placeholder="{$users['users']->user_name}" disabled="" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="disabledInput">Role:</label>
+                                        <input class="form-control" id="disabledInput" placeholder="{$users['users']->role}" disabled="" type="text">
+                                    </div>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+        </div>
+{elseif $userscount > 1}
+    <div class="container bootstrap snippet">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="main-box no-header clearfix">
+                    <div class="main-box-body clearfix">
+                        <div class="table-responsive">
+                            <table class="table user-list">
+                                <thead>
+                                <tr>
+                                    <th><span>Přihlašovací jméno</span></th>
+                                    <th><span>Email</span></th>
+                                    <th><span>Založeno</span></th>
+                                    <th><span>Naposledy upraveno</span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {foreach $users as $user}
+                                    <tr>
+                                        <td>
+                                            <img src="../{$user['users']->image}" alt="">
+                                            <a n:href="Profile:profile, 'userId' => $user['users']->user_id" class="user-link">{$user['users']->first_name} {$user['users']->last_name}</a>
+                                            <span class="user-subhead">{$user['users']->role}</span>
+                                        </td>
+                                        <td>
+                                            <a href="#">{$user['users']->user_email}</a>
+                                        </td>
+                                        <td>{$user['users']->date_created}</td>
+                                        <td>{$user['users']->last_updated}</td>
+                                    </tr>
+                                {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/if}

@@ -107,9 +107,9 @@ class HomepagePresenter extends BasePresenter
         }
         $this->redirect('Homepage:default');
     }
-    public function handleDeleteSharedPost($postId)
+    public function handleDeleteSharedPost($postId, $sharedId)
     {
-        $this->database->table('posts_shared')->get($postId)->delete();
+        $this->database->table('posts_shared')->where('post_id = ? AND id = ?', $postId, $sharedId)->delete();
         $this->flashMessage('Příspěvek byl úspěšně smazán', 'success');
     }
 

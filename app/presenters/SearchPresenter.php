@@ -36,43 +36,126 @@ class SearchPresenter extends BasePresenter
     }
 
     public function SearchSuccess($form, $values) {
-        $this->redirect('Search:searchresults', ['content' => $values->content, 'category' => $values->category]);
+        $this->redirect('Search:searchengine', ['content' => $values->content, 'category' => $values->category]);
 
+    }
+
+    public function renderSearchEngine($content, $category)
+    {
+        if($category == "Přihlašovací jméno")
+        {
+            $userscount = $this->database->table('users')->where('user_name', $content)->count();
+            if ($userscount == 0)
+            {
+                $this->getPresenter()->flashMessage('Žádný takový uživatel neexistuje!', 'danger');
+                $this->redirect('Search:searchform');
+            }
+            elseif ($userscount == 1)
+            {
+                $this->redirect('Search:searchresult', ['content' => $content, 'category' => $category]);
+            }
+            else
+            {
+                $this->redirect('Search:searchresults', ['content' => $content, 'category' => $category]);
+            }
+        }
+        elseif ($category == "Křestní jméno")
+        {
+            $userscount = $this->database->table('users')->where('first_name', $content)->count();
+            if ($userscount == 0)
+            {
+                $this->getPresenter()->flashMessage('Žádný takový uživatel neexistuje!', 'danger');
+                $this->redirect('Search:searchform');
+            }
+            elseif ($userscount == 1)
+            {
+                $this->redirect('Search:searchresult', ['content' => $content, 'category' => $category]);
+            }
+            else
+            {
+                $this->redirect('Search:searchresults', ['content' => $content, 'category' => $category]);
+            }
+        }
+        else
+        {
+            $userscount = $this->database->table('users')->where('last_name', $content)->count();
+            if ($userscount == 0)
+            {
+                $this->getPresenter()->flashMessage('Žádný takový uživatel neexistuje!', 'danger');
+                $this->redirect('Search:searchform');
+            }
+            elseif ($userscount == 1)
+            {
+                $this->redirect('Search:searchresult', ['content' => $content, 'category' => $category]);
+            }
+            else
+            {
+                $this->redirect('Search:searchresults', ['content' => $content, 'category' => $category]);
+            }
+        }
+    }
+
+    public function renderSearchResult($content, $category)
+    {
+        if($category == "Přihlašovací jméno")
+        {
+            $users = $this->database->table('users')->where('user_name', $content)->fetch();
+            $this->template->users = $users;
+        }
+        elseif ($category == "Křestní jméno")
+        {
+            $users = $this->database->table('users')->where('first_name', $content)->fetch();
+            $this->template->users = $users;
+        }
+        else
+        {
+            $users = $this->database->table('users')->where('last_name', $content)->fetch();
+            $this->template->users = $users;
+        }
     }
 
     public function renderSearchResults($content, $category)
     {
         if($category == "Přihlašovací jméno")
         {
-            $users = $this->database->table('users')->where('user_name', $content);
-            $this->template->users = $users;
-            if (empty($row['user_id']))
+            $usersArray = [];
+            $foundusers = $this->database->table('users')->where('user_name', $content);
+            foreach ($foundusers as $iUser)
             {
-                $this->getPresenter()->flashMessage('Žádný takový uživatel neexistuje!', 'danger');
-                $this->redirect('Search:searchform');
+                $usersArray[$iUser->user_id] = [
+                    'users' => $iUser,
+                ];
             }
+            $this->template->foundusers = $usersArray;
+
         }
         elseif ($category == "Křestní jméno")
         {
-            $users = $this->database->table('users')->where('first_name', $content);
-            $this->template->users = $users;
-            if (empty($row['user_id']))
+            $usersArray = [];
+            $foundusers = $this->database->table('users')->where('first_name', $content);
+            foreach ($foundusers as $iUser)
             {
-                $this->getPresenter()->flashMessage('Žádný takový uživatel neexistuje!', 'danger');
-                $this->redirect('Search:searchform');
+                $usersArray[$iUser->user_id] = [
+                    'users' => $iUser,
+                ];
             }
+            $this->template->foundusers = $usersArray;
         }
         else
         {
-            $users = $this->database->table('users')->where('last_name', $content);
-            $this->template->users = $users;
-            if (empty($row['user_id']))
+            $usersArray = [];
+            $foundusers = $this->database->table('users')->where('last_name', $content);
+            foreach ($foundusers as $iUser)
             {
-                $this->getPresenter()->flashMessage('Žádný takový uživatel neexistuje!', 'danger');
-                $this->redirect('Search:searchform');
+                $usersArray[$iUser->user_id] = [
+                    'users' => $iUser,
+                ];
             }
+            $this->template->foundusers = $usersArray;
         }
     }
+
+
 
 
 

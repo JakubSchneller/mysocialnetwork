@@ -1,39 +1,39 @@
 {block content}
-<div class="container bootstrap snippet">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="main-box no-header clearfix">
-                <div class="main-box-body clearfix">
-                    <div class="table-responsive">
-                        <table class="table user-list">
-                            <thead>
-                            <tr>
-                                <th><span>Přihlašovací jméno</span></th>
-                                <th><span>Email</span></th>
-                                <th><span>Založeno</span></th>
-                                <th><span>Naposledy upraveno</span></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {foreach $users as $user}
-                            <tr>
-                                <td>
-                                    <img src="../{$user->image}" alt="">
-                                    <a n:href="Profile:profile, 'userId' => $user->user_id" class="user-link">{$user->first_name} {$user->last_name}</a>
-                                    <span class="user-subhead">{$user->role}</span>
-                                </td>
-                                <td>
-                                    <a href="#">{$user->user_email}</a>
-                                </td>
-                                <td>{$user->date_created}</td>
-                                <td>{$user->last_updated}</td>
-                            </tr>
-                            {/foreach}
-                            </tbody>
-                        </table>
+    <div class="container bootstrap snippet">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="main-box no-header clearfix">
+                    <div class="main-box-body clearfix">
+                        <div class="table-responsive">
+                            <table class="table user-list">
+                                <thead>
+                                <tr>
+                                    <th><span>Přihlašovací jméno</span></th>
+                                    <th><span>Email</span></th>
+                                    <th><span>Založeno</span></th>
+                                    <th><span>Naposledy upraveno</span></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {foreach $foundusers as $founduser}
+                                    <tr>
+                                        <td>
+                                            <img src="../{$founduser['users']->image}" alt="">
+                                            <a n:href="Profile:profile, 'userId' => $founduser['users']->user_id" class="user-link">{$founduser['users']->first_name} {$founduser['users']->last_name}</a>
+                                            <span class="user-subhead">{$founduser['users']->role}</span>
+                                        </td>
+                                        <td>
+                                            <a href="#">{$founduser['users']->user_email}</a>
+                                        </td>
+                                        <td>{$founduser['users']->date_created}</td>
+                                        <td>{$founduser['users']->last_updated}</td>
+                                    </tr>
+                                {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
