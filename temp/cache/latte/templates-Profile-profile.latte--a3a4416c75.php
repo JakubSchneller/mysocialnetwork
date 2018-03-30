@@ -105,6 +105,10 @@ class Templatea3a4416c75 extends Latte\Runtime\Template
 										<label class="control-label" for="disabledInput">Role:</label>
 										<input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($users->role) /* line 59 */ ?>" disabled="" type="text">
 									</div>
+									<div class="form-group">
+										<label class="control-label" for="disabledInput">Počet přátel:</label>
+										<input class="form-control" id="disabledInput" placeholder="<?php echo LR\Filters::escapeHtmlAttr($friendscount) /* line 63 */ ?>" disabled="" type="text">
+									</div>
 									</p>
 								</div>
 							</div>

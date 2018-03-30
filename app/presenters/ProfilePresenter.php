@@ -37,6 +37,9 @@ class ProfilePresenter extends \App\Presenters\BasePresenter
 
         $this->template->arewefriends = $arewefriends;
 
+        $friendscount = $this->database->table("friends")->where("user_id", $userId)->count();
+        $this->template->friendscount = $friendscount;
+
 
     }
     public function renderProfileTest($userId)
