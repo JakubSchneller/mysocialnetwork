@@ -22,16 +22,6 @@ return array (
       'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/model/MyAuthenticator.php',
       'time' => 1521421022,
     ),
-    'App\\Model\\UserManager' => 
-    array (
-      'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/model/UserManager.php',
-      'time' => 1521421022,
-    ),
-    'App\\Model\\DuplicateNameException' => 
-    array (
-      'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/model/UserManager.php',
-      'time' => 1521421022,
-    ),
     'App\\Presenters\\BasePresenter' => 
     array (
       'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/presenters/BasePresenter.php',
@@ -57,20 +47,30 @@ return array (
       'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/presenters/SearchPresenter.php',
       'time' => 1521421022,
     ),
-    'App\\Presenters\\SignPresenter' => 
-    array (
-      'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/presenters/SignPresenter.php',
-      'time' => 1521421022,
-    ),
     'App\\RouterFactory' => 
     array (
       'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/router/RouterFactory.php',
       'time' => 1521421022,
     ),
+    'App\\Model\\UserManager' => 
+    array (
+      'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/model/UserManager.php',
+      'time' => 1522426287,
+    ),
+    'App\\Model\\DuplicateNameException' => 
+    array (
+      'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/model/UserManager.php',
+      'time' => 1522426287,
+    ),
+    'App\\Presenters\\SignPresenter' => 
+    array (
+      'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/presenters/SignPresenter.php',
+      'time' => 1522426697,
+    ),
     'App\\Presenters\\ProfilePresenter' => 
     array (
       'file' => '/Applications/MAMP/htdocs/mysocialnetwork/mysocialnetwork/app/presenters/ProfilePresenter.php',
-      'time' => 1522425803,
+      'time' => 1522430001,
     ),
   ),
   1 => 

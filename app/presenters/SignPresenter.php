@@ -83,7 +83,9 @@ class SignPresenter extends BasePresenter
 
             $file->move("images/".$filename);
 
-            $this->userManager->add($values->username, $values->email, $values->password, $values->surname, $values->lastname, $values->aboutme, $values->image);
+            $header = "images/default.jpg";
+
+            $this->userManager->add($values->username, $values->email, $values->password, $values->surname, $values->lastname, $values->aboutme, $values->image, $header);
 
 
             $form->getPresenter()->flashMessage('Byl jste úspěšně zaregistrován', 'success');

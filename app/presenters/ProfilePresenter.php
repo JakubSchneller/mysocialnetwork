@@ -91,6 +91,8 @@ class ProfilePresenter extends \App\Presenters\BasePresenter
             $form->addSelect('role', 'Role:')
                 ->setItems($roles, false);
         }
+        $form->addUpload('image');
+        $form->addUpload('header');
         $form->addSubmit('add','Uložit');
         $form->onSuccess[] = [$this, 'EditUserFormSuccess'];
         return $form;
@@ -195,5 +197,102 @@ class ProfilePresenter extends \App\Presenters\BasePresenter
     public function actionDeleteFriend($friendId) {
         $this->database->table("friends")->where("user_id = ? AND friend_id = ?", $this->getUser()->getId(), $friendId)->delete();
         $this->redirect('Profile:profile', ['userId' => $friendId]);
+    }
+
+    public function renderChangeImages($userId)
+    {
+
+    }
+
+    public function createComponentChangeImagesForm()
+    {
+        $form = new Form;
+        $form->addUpload('image');
+        $form->addUpload('header');
+        $form->addSubmit('add','Uložit');
+        $form->onSuccess[] = [$this, 'ChangeImagesFormSuccess'];
+        return $form;
+    }
+    public function ChangeImagesFormSuccess($form, $values)
+    {
+        $file1 = $values->image;
+        $file2 = $values->header;
+
+
+        if ($file1->isImage()) {
+
+            $file_ext=strtolower(mb_substr($file1->getSanitizedName(), strrpos($file1->getSanitizedName(), ".")));
+
+            $filename = Nette\Utils\Random::generate(15);
+            $filename = $filename . $file_ext;
+
+
+            $isUnique = ($this->database->table('users')
+                    ->where("image", $filename)->count() <= 0);
+
+
+            while(!$isUnique) {
+                $filename = Nette\Utils\Random::generate(15);
+                $filename = $filename . ".png";
+
+                $isUnique = ($this->database->table('users')
+                        ->where("img_filename", $filename)->count() <= 0);
+            }
+
+            $file1->move("images/".$filename);
+        }
+        if ($file2->isImage()) {
+
+            $file_ext=strtolower(mb_substr($file2->getSanitizedName(), strrpos($file2->getSanitizedName(), ".")));
+
+            $filename = Nette\Utils\Random::generate(15);
+            $filename = $filename . $file_ext;
+
+
+            $isUnique = ($this->database->table('users')
+                    ->where("header", $filename)->count() <= 0);
+
+
+            while(!$isUnique) {
+                $filename = Nette\Utils\Random::generate(15);
+                $filename = $filename . ".png";
+
+                $isUnique = ($this->database->table('users')
+                        ->where("img_filename", $filename)->count() <= 0);
+            }
+
+            $file2->move("images/".$filename);
+        }
+        $editeduser = $this->database->table('users')->get($this->getParameter('userId'));
+        if ($values->image->name == null && $values->header->name == null)
+        {
+
+        }
+        else
+        {
+            if ($values->image->name == null)
+            {
+                $editeduser->update([
+                    'header' => $values->header
+                ]);
+            }
+            else if ($values->header->name == null)
+            {
+                $editeduser->update([
+                    'image' => $values->image
+                ]);
+            }
+            else
+            {
+                $editeduser->update([
+                    'image' => $values->image,
+                    'header' => $values->header
+                ]);
+            }
+        }
+
+
+        $userId = $this->getParameter('userId');
+        $this->redirect('Profile:profile', ['userId' => $userId]);
     }
 }

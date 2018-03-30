@@ -119,6 +119,27 @@ class Templatec6a127a34a extends Latte\Runtime\Template
 <?php
 			}
 ?>
+										<div class="form-group">
+											<label class="control-label" for="inputDefault">Profilový obrázek:</label>
+											<input class="form-control" placeholder="Vybrat obrázek" type="file"<?php
+			$_input = end($this->global->formsStack)["image"];
+			echo $_input->getControlPart()->addAttributes(array (
+			'class' => NULL,
+			'placeholder' => NULL,
+			'type' => NULL,
+			))->attributes() ?>>
+										</div>
+										<div class="form-group">
+											<label class="control-label" for="inputDefault">Úvodní obrázek:</label>
+											<input class="form-control" placeholder="Vybrat obrázek" type="file"<?php
+			$_input = end($this->global->formsStack)["header"];
+			echo $_input->getControlPart()->addAttributes(array (
+			'class' => NULL,
+			'placeholder' => NULL,
+			'type' => NULL,
+			))->attributes() ?>>
+
+										</div>
 									<div class="text-center">
 									<button type="submit" class="btn btn-primary">Uložit</button>
 									</div>

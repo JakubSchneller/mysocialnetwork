@@ -44,21 +44,23 @@ class Templatea3a4416c75 extends Latte\Runtime\Template
 								<div id="cover" class="col-md-12">
 									<div align="center">
 										<a class="" href="#">
-											<img class="media-object dp img-circle" src="../<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($users->image)) /* line 11 */ ?>" style="width: 180px;height:180px;">
+											<img src="../<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($users->header)) /* line 11 */ ?>" style="width: 100%;height: 100%;">
+											<img class="media-object dp img-circle" src="../<?php echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl($users->image)) /* line 12 */ ?>" style="width: 180px;height:180px;">
 										</a>
 									</div>
 								</div>
 								<div class="col-md-12">
-									<h2 align="center"><?php echo LR\Filters::escapeHtmlText($users->first_name) /* line 16 */ ?> <?php
-		echo LR\Filters::escapeHtmlText($users->last_name) /* line 16 */ ?></h2>
+									<h2 align="center"><?php echo LR\Filters::escapeHtmlText($users->first_name) /* line 17 */ ?> <?php
+		echo LR\Filters::escapeHtmlText($users->last_name) /* line 17 */ ?></h2>
 									<div class="text-center">
 <?php
-		if ($user->isInRole('admin') || $user->isInRole('owner')) {
-			?>										<a type="button" class="btn btn-success" style="margin: auto" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Profile:editprofile", ['userId' => $users->user_id])) ?>">Editovat</a>
+		if ($loggedin->user_id == $users->user_id) {
+			?>											<a type="button" class="btn btn-success" style="margin: auto" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Profile:changeimages", ['userId' => $users->user_id])) ?>">Změnit obrázky</a>
+											<a type="button" class="btn btn-success" style="margin: auto" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Profile:editprofile", ['userId' => $users->user_id])) ?>">Editovat</a>
 <?php
 		}
-		elseif ($loggedin->user_id == $users->user_id) {
-			?>										<a type="button" class="btn btn-success" style="margin: auto" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Profile:editprofile", ['userId' => $users->user_id])) ?>">Editovat</a>
+		elseif ($user->isInRole('admin') || $user->isInRole('owner')) {
+			?>											<a type="button" class="btn btn-success" style="margin: auto" href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Profile:editprofile", ['userId' => $users->user_id])) ?>">Editovat</a>
 <?php
 		}
 		if ($users->user_id == $user->getId()) {
@@ -75,8 +77,6 @@ class Templatea3a4416c75 extends Latte\Runtime\Template
 			}
 		}
 ?>
-
-
 									</div>
 								</div>
 								<div class="col-md-12">

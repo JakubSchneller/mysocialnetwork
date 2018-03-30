@@ -8,6 +8,7 @@
 								<div id="cover" class="col-md-12">
 									<div align="center">
 										<a class="" href="#">
+											<img src="../{$users->header}" style="width: 100%;height: 100%;">
 											<img class="media-object dp img-circle" src="../{$users->image}" style="width: 180px;height:180px;">
 										</a>
 									</div>
@@ -15,10 +16,11 @@
 								<div class="col-md-12">
 									<h2 align="center">{$users->first_name} {$users->last_name}</h2>
 									<div class="text-center">
-									{if $user->isInRole('admin') || $user->isInRole('owner')}
-										<a n:href="Profile:editprofile, 'userId' => $users->user_id" type="button" class="btn btn-success" style="margin: auto">Editovat</a>
-                                    {elseif $loggedin->user_id == $users->user_id}
-										<a n:href="Profile:editprofile, 'userId' => $users->user_id" type="button" class="btn btn-success" style="margin: auto">Editovat</a>
+                                        {if $loggedin->user_id == $users->user_id}
+											<a n:href="Profile:changeimages, 'userId' => $users->user_id" type="button" class="btn btn-success" style="margin: auto">Změnit obrázky</a>
+											<a n:href="Profile:editprofile, 'userId' => $users->user_id" type="button" class="btn btn-success" style="margin: auto">Editovat</a>
+                                        {elseif $user->isInRole('admin') || $user->isInRole('owner')}
+											<a n:href="Profile:editprofile, 'userId' => $users->user_id" type="button" class="btn btn-success" style="margin: auto">Editovat</a>
                                     {/if}
 									{if $users->user_id == $user->getId()}
 									{else}
@@ -28,8 +30,6 @@
 											<a n:href="Profile:deleteFriend, 'friendId' => $users->user_id" onClick="return confirm('Opravdu odebrat přítele?');" type="button" class="btn btn-success" style="margin: auto">Přátelé <span class="glyphicon glyphicon-ok"></span></a>
                                         {/if}
 									{/if}
-
-
 									</div>
 								</div>
 								<div class="col-md-12">

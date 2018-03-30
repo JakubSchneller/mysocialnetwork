@@ -24,7 +24,8 @@ class UserManager implements Nette\Security\IAuthenticator
 	    COLUMN_SURNAME = 'first_name',
         COLUMN_LASTNAME = 'last_name',
         COLUMN_ABOUTME = 'about_me',
-        COLUMN_IMAGE = 'image';
+        COLUMN_IMAGE = 'image',
+        COLUMN_HEADER = 'header';
 
 
 	/** @var Nette\Database\Context */
@@ -76,7 +77,7 @@ class UserManager implements Nette\Security\IAuthenticator
 	 * @return void
 	 * @throws DuplicateNameException
 	 */
-	public function add($username, $email, $password, $surname, $lastname, $aboutme, $image)
+	public function add($username, $email, $password, $surname, $lastname, $aboutme, $image, $header)
 	{
 		try {
 			$this->database->table(self::TABLE_NAME)->insert([
@@ -88,7 +89,8 @@ class UserManager implements Nette\Security\IAuthenticator
                 self::COLUMN_SURNAME => $surname,
                 self::COLUMN_LASTNAME => $lastname,
                 self::COLUMN_ABOUTME => $aboutme,
-                self::COLUMN_IMAGE => $image
+                self::COLUMN_IMAGE => $image,
+                self::COLUMN_HEADER => $header
 
 			]);
 		} catch (Nette\Database\UniqueConstraintViolationException $e) {
