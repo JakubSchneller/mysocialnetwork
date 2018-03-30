@@ -23,12 +23,12 @@ https://git-scm.com/doc
 Z přiložené ho projektu vytvořte plně funkční sociální síť.<br>
 V kořenu repozitáře vytvořte soubor README.md s popisem postupu nasazení vaší aplikace.
 - Uživatelé
-    - Systém přátelství
+    - Systém přátelství (hotovo)
     - Stránky profilů 
         - Úprava profilu (hotovo)
-        - Nahrávání headeru
-        - Nahrávání profilového obrázku
-        - Počet přátel
+        - Nahrávání headeru (hotovo)
+        - Nahrávání profilového obrázku (hotovo)
+        - Počet přátel (hotovo)
     - Společné skupiny (jako ta naše na FB)
     - Registrace (hotovo)
     - Přihlášení (hotovo)
