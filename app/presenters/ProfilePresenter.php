@@ -24,6 +24,20 @@ class ProfilePresenter extends \App\Presenters\BasePresenter
         $users = $this->database->table("users")->where("user_id", $userId)->fetch();
         $this->template->users = $users;
 
+        $friends = $this->database->table("friends")->where("user_id = ? AND friend_id = ?", $this->getUser()->getId(), $users->user_id)->fetch();
+
+        if (empty($friends))
+        {
+            $arewefriends = false;
+        }
+        else
+        {
+            $arewefriends = true;
+        }
+
+        $this->template->arewefriends = $arewefriends;
+
+
     }
     public function renderProfileTest($userId)
     {
@@ -165,5 +179,18 @@ class ProfilePresenter extends \App\Presenters\BasePresenter
         else {
             $form->getPresenter()->flashMessage('Toto uživatelské jméno již někdo používá.', 'danger');
         }
+    }
+
+    public function actionAddFriend($friendId) {
+            $this->database->table('friends')->insert([
+                'user_id' => $this->getUser()->getId(),
+                'friend_id' => $friendId
+            ]);
+        $this->redirect('Profile:profile', ['userId' => $friendId]);
+    }
+
+    public function actionDeleteFriend($friendId) {
+        $this->database->table("friends")->where("user_id = ? AND friend_id = ?", $this->getUser()->getId(), $friendId)->delete();
+        $this->redirect('Profile:profile', ['userId' => $friendId]);
     }
 }

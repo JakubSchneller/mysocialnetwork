@@ -35,7 +35,7 @@
                     {/if}
                     <div class="pull-left meta">
                         <div class="title h5">
-                            <a href="#"><b>{$post['posts']->post_creator}</b></a>
+                            <a n:href="Profile:profile, 'userId' => $post['posts']->post_creator_id"><b>{$post['posts']->post_creator}</b></a>
                             vytvořil/a příspěvek
                         </div>
                         <h6 class="text-muted time">{$post['posts']->post_date}</h6>
@@ -77,7 +77,7 @@
                     {/if}
                     <div class="pull-left meta">
                         <div class="title h5">
-                            <a href="#"><b>{$sharedpost['posts']->post_sharer}</b></a>
+                            <a n:href="Profile:profile, 'userId' => $sharedpost['posts']->post_sharer_id"><b>{$sharedpost['posts']->post_sharer}</b></a>
                             sdílel/a příspěvek uživatele <b><a n:href="Profile:profile, 'userId' => $sharedpost['posts']->post_creator_id">{$sharedpost['posts']->post_creator}</a></b>
                         </div>
                         <h6 class="text-muted time">{$sharedpost['posts']->post_shareddate}</h6>
@@ -91,7 +91,7 @@
                             </div>
                             <div class="pull-left meta">
                                 <div class="title h5">
-                                    <a href="#"><b>{$sharedpost['posts']->post_creator}</b></a>
+                                    <a n:href="Profile:profile, 'userId' => $sharedpost['posts']->post_creator_id"><b>{$sharedpost['posts']->post_creator}</b></a>
                                     vytvořil/a příspěvek
                                 </div>
                                 <h6 class="text-muted time">{$sharedpost['posts']->post_shareddate}</h6>

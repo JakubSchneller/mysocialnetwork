@@ -20,6 +20,16 @@
                                     {elseif $loggedin->user_id == $users->user_id}
 										<a n:href="Profile:editprofile, 'userId' => $users->user_id" type="button" class="btn btn-success" style="margin: auto">Editovat</a>
                                     {/if}
+									{if $users->user_id == $user->getId()}
+									{else}
+                                        {if $arewefriends == false}
+											<a n:href="Profile:addFriend, 'friendId' => $users->user_id" type="button" class="btn btn-success" style="margin: auto">Přidat přítele</a>
+                                        {elseif $arewefriends == true}
+											<a n:href="Profile:deleteFriend, 'friendId' => $users->user_id" onClick="return confirm('Opravdu odebrat přítele?');" type="button" class="btn btn-success" style="margin: auto">Přátelé <span class="glyphicon glyphicon-ok"></span></a>
+                                        {/if}
+									{/if}
+
+
 									</div>
 								</div>
 								<div class="col-md-12">

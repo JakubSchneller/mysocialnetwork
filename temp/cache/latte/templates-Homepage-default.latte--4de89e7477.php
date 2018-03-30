@@ -100,7 +100,8 @@ class Template4de89e7477 extends Latte\Runtime\Template
 ?>
                     <div class="pull-left meta">
                         <div class="title h5">
-                            <a href="#"><b><?php echo LR\Filters::escapeHtmlText($post['posts']->post_creator) /* line 38 */ ?></b></a>
+                            <a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Profile:profile", ['userId' => $post['posts']->post_creator_id])) ?>"><b><?php
+			echo LR\Filters::escapeHtmlText($post['posts']->post_creator) /* line 38 */ ?></b></a>
                             vytvořil/a příspěvek
                         </div>
                         <h6 class="text-muted time"><?php echo LR\Filters::escapeHtmlText($post['posts']->post_date) /* line 41 */ ?></h6>
@@ -161,7 +162,8 @@ class Template4de89e7477 extends Latte\Runtime\Template
 ?>
                     <div class="pull-left meta">
                         <div class="title h5">
-                            <a href="#"><b><?php echo LR\Filters::escapeHtmlText($sharedpost['posts']->post_sharer) /* line 80 */ ?></b></a>
+                            <a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Profile:profile", ['userId' => $sharedpost['posts']->post_sharer_id])) ?>"><b><?php
+			echo LR\Filters::escapeHtmlText($sharedpost['posts']->post_sharer) /* line 80 */ ?></b></a>
                             sdílel/a příspěvek uživatele <b><a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Profile:profile", ['userId' => $sharedpost['posts']->post_creator_id])) ?>"><?php
 			echo LR\Filters::escapeHtmlText($sharedpost['posts']->post_creator) /* line 81 */ ?></a></b>
                         </div>
@@ -176,7 +178,8 @@ class Template4de89e7477 extends Latte\Runtime\Template
                             </div>
                             <div class="pull-left meta">
                                 <div class="title h5">
-                                    <a href="#"><b><?php echo LR\Filters::escapeHtmlText($sharedpost['posts']->post_creator) /* line 94 */ ?></b></a>
+                                    <a href="<?php echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Profile:profile", ['userId' => $sharedpost['posts']->post_creator_id])) ?>"><b><?php
+			echo LR\Filters::escapeHtmlText($sharedpost['posts']->post_creator) /* line 94 */ ?></b></a>
                                     vytvořil/a příspěvek
                                 </div>
                                 <h6 class="text-muted time"><?php echo LR\Filters::escapeHtmlText($sharedpost['posts']->post_shareddate) /* line 97 */ ?></h6>
